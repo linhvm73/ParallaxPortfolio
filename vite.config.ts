@@ -6,7 +6,7 @@ import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-export default defineConfig({
+export default defineConfig(async ({ mode }) => ({
   plugins: [
     react(),
     runtimeErrorOverlay(),
@@ -19,7 +19,7 @@ export default defineConfig({
         ]
       : []),
   ],
-  base: process.env.NODE_ENV === "production" ? "/ParallaxPortfolio/" : "/",
+  base: mode === "github-pages" ? "/ParallaxPortfolio/" : "/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "client", "src"),
@@ -44,4 +44,4 @@ export default defineConfig({
       deny: ["**/.*"],
     },
   },
-});
+}));
