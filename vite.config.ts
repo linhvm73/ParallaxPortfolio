@@ -19,7 +19,7 @@ export default defineConfig(async ({ mode }) => ({
         ]
       : []),
   ],
-  base: mode === "github-pages" ? "/ParallaxPortfolio/" : "/",
+  base: "/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "client", "src"),
