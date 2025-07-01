@@ -6,15 +6,21 @@
     <script type="text/javascript">
       // GitHub Pages hack to handle SPA routing for subdirectory
       // https://github.com/rafgraph/spa-github-pages
-      var pathSegmentsToKeep = 1; // For /ParallaxPortfolio/
-      var l = window.location;
-      l.replace(
-        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
-        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-        l.hash
-      );
+      // Only run this on GitHub Pages (when hostname contains github.io)
+      if (window.location.hostname.includes('github.io')) {
+        var pathSegmentsToKeep = 1; // For /ParallaxPortfolio/
+        var l = window.location;
+        l.replace(
+          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+          l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+          l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+          (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+          l.hash
+        );
+      } else {
+        // For local development, just redirect to home
+        window.location.href = '/';
+      }
     </script>
   </head>
   <body>
